@@ -1,0 +1,42 @@
+## .NET Core
+bin/
+obj/
+out/
+[Bb]in/
+[Ob]j/
+
+## Rider / IntelliJ
+.idea/
+*.sln.iml
+*.user
+*.suo
+*.userosscache
+*.sln.doccache
+
+## Visual Studio
+.vs/
+*.user
+*.userosscache
+*.suo
+*.cache
+*.opendb
+*.dbmdl
+*.vspscc
+*.vssscc
+
+## Docker
+.dockerignore
+
+## User secrets & sensitive data
+appsettings.Development.json
+appsettings.Local.json
+*.pfx
+*.publishsettings
+
+## Node.js (якщо раптом з'явиться фронтенд на JS)
+node_modules/
+npm-debug.log*
+
+## OS generated files
+.DS_Store
+Thumbs.db
