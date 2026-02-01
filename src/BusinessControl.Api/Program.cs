@@ -1,4 +1,13 @@
+using JasperFx;
+using Marten;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddMarten(options =>
+{
+    options.Connection("Host=localhost;Database=business_db;Username=admin;Password=password");
+    options.AutoCreateSchemaObjects = AutoCreate.All;
+});
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
