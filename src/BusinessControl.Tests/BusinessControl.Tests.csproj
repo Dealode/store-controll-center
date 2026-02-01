@@ -21,4 +21,9 @@
         <Using Include="NUnit.Framework"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\BusinessControl.Domain\BusinessControl.Domain.csproj" />
+      <ProjectReference Include="..\BusinessControl.Shared\BusinessControl.Shared.csproj" />
+    </ItemGroup>
+
 </Project>

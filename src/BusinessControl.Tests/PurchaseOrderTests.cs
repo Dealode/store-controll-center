@@ -1,3 +1,8 @@
+using BusinessControl.Domain.Aggregates;
+using BusinessControl.Domain.Events;
+using BusinessControl.Shared.Enums;
+using FluentAssertions;
+
 namespace BusinessControl.Tests;
 
 [TestFixture]
@@ -16,7 +21,7 @@ public class PurchaseOrderTests
         // Assert
         order.Id.Should().Be(id);
         order.SupplierId.Should().Be(supplierId);
-        order.Status.Should().Be(PurchaseOrderStatus.Draft);
+        order.Status.Should().Be(OrderStatus.Draft);
 
         var events = order.GetUncommittedEvents();
         events.Should().ContainSingle()
