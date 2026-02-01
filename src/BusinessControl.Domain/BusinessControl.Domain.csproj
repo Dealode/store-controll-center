@@ -10,4 +10,8 @@
       <ProjectReference Include="..\BusinessControl.Shared\BusinessControl.Shared.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Suppliers\" />
+    </ItemGroup>
+
 </Project>

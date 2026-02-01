@@ -1,5 +1,5 @@
 using BusinessControl.Domain.Aggregates;
-using BusinessControl.Domain.Events;
+using BusinessControl.Domain.PurchaseOrders;
 using BusinessControl.Shared.Enums;
 using FluentAssertions;
 

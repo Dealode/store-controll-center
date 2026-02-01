@@ -1,7 +1,7 @@
-using BusinessControl.Domain.Events;
+using BusinessControl.Domain.Aggregates;
 using BusinessControl.Shared.Enums;
 
-namespace BusinessControl.Domain.Aggregates;
+namespace BusinessControl.Domain.PurchaseOrders;
 
 public class PurchaseOrder : AggregateRoot
 {
