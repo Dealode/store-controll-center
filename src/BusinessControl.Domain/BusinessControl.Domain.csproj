@@ -14,4 +14,8 @@
       <Folder Include="Suppliers\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Marten.AspNetCore" Version="8.22.0" />
+    </ItemGroup>
+
 </Project>
