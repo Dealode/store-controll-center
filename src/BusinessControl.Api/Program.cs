@@ -1,3 +1,4 @@
+using BusinessControl.Domain.Procurement;
 using JasperFx;
 using Marten;
 
@@ -45,6 +46,8 @@ app.MapGet("/weatherforecast", () =>
         return forecast;
     })
     .WithName("GetWeatherForecast");
+
+app.MapProcurement();
 
 app.Run();
 
