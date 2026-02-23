@@ -1,6 +1,6 @@
-namespace BusinessControl.Domain.Procurement;
+namespace BusinessControl.Shared.Procurement;
 
-public sealed class Product
+public sealed class ProductDto
 {
     public Guid Id { set; get; }
     public string Sku { set; get; }

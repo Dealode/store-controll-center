@@ -1,4 +1,4 @@
-namespace BusinessControl.Domain.Procurement.Enums;
+namespace BusinessControl.Shared.Procurement.Enums;
 
 public enum CurrencyCode
 {

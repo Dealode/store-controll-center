@@ -1,6 +1,6 @@
-namespace BusinessControl.Domain.Procurement;
+namespace BusinessControl.Shared.Procurement;
 
-public sealed class BuyMarketplace
+public sealed class BuyMarketplaceDto
 {
     public Guid Id { set; get; }
     public string Name { set; get; }

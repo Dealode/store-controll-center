@@ -1,6 +1,6 @@
 namespace BusinessControl.Tests;
 
-public class VendorOfferTests
+public class VendorOfferDtoTests
 {
     
 }

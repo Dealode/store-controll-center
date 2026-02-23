@@ -1,4 +1,4 @@
-using BusinessControl.Domain.Procurement.Enums;
+using BusinessControl.Shared.Procurement.Enums;
 
 namespace BusinessControl.Domain.Procurement.Calculator;
 
