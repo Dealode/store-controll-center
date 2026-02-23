@@ -1,0 +1,17 @@
+<MudDialog>
+    <DialogContent>
+        Чи підтверджуєте операцію?
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Відміна</MudButton>
+        <MudButton Color="Color.Primary" OnClick="Confirm">Підтвердити</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter]
+    private IMudDialogInstance MudDialog { get; set; }
+
+    private void Confirm() => MudDialog.Close(DialogResult.Ok(true));
+    private void Cancel() => MudDialog.Cancel();
+}

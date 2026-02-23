@@ -1,0 +1,83 @@
+@page "/procurement/products"
+@using BusinessControl.Client.Dialogs
+@inject ProcurementApiClient Api
+@inject NavigationManager Nav
+@inject IDialogService Dialogs
+@inject ISnackbar Snackbar
+
+<MudText Typo="Typo.h4" Class="mb-2">Products</MudText>
+
+<MudStack Row="true" Spacing="2" Class="mb-3">
+    <MudTextField
+        @bind-Value="_search"
+        Placeholder="Search by name or SKU"
+        Variant="Variant.Outlined"
+        Adornment="Adornment.Start"
+        AdornmentIcon="@Material.Filled.Search" />
+    <MudButton
+        Variant="Variant.Filled"
+        Color="Color.Primary"
+        OnClick="@(() => Nav.NavigateTo("/procurement/products/new"))">Add product 
+    </MudButton>
+</MudStack>
+
+<MudPaper Class="pa-2">
+    <MudTable Items="_filtered" Dense="true" Hover="true" Bordered="true" Striped="true">
+        <HeaderContent>
+            <MudTh>Name</MudTh>
+            <MudTh>SKU</MudTh>
+            <MudTh class="text-end">Weight</MudTh>
+            <MudTh class="text-end">L×W×H</MudTh>
+            <MudTh class="text-end">Actions</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Name">@context.Name</MudTd>
+            <MudTd DataLabel="SKU">@context.Sku</MudTd>
+            <MudTd DataLabel="Weight" class="text-end">@context.Weight</MudTd>
+            <MudTd DataLabel="Size" class="text-end">@($"{context.Length}×{context.Width}×{context.Height}")</MudTd>
+            <MudTd class="text-end">
+                <MudIconButton Icon="@Icons.Material.Filled.Edit" Color="Color.Primary"
+                               OnClick="@(() => Nav.NavigateTo($"/procurement/products/{context.Id}"))" />
+                <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Error"
+                               OnClick="@(() => ConfirmDelete(context))" />
+            </MudTd>
+        </RowTemplate>
+        <NoRecordsContent>
+            <MudText Class="pa-4">No products yet.</MudText>
+        </NoRecordsContent>
+    </MudTable>
+</MudPaper>
+
+@code {
+    private List<ProductDto> _items = [];
+    private string _search = "";
+    
+    private IEnumerable<ProductDto> _filtered => string.IsNullOrWhiteSpace(_search)
+        ? _items
+        : _items.Where(x =>
+            (x.Name?.Contains(_search, StringComparison.OrdinalIgnoreCase) ?? false) ||
+            (x.Sku?.Contains(_search, StringComparison.OrdinalIgnoreCase) ?? false));
+
+    protected override async Task OnInitializedAsync() => 
+        _items = await Api.GetProductsAsync();
+    
+    private async Task ConfirmDelete(ProductDto item)
+    {
+        var parameters = new DialogParameters
+        {
+            ["ContentText"] = $"Delete product '{item.Name}'?",
+            ["ButtonText"] = "Delete",
+            ["Color"] = Color.Error
+        };
+
+        var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true };
+        var dialog = await Dialogs.ShowAsync<BlurryDialog>("Confirm", parameters, options);
+        var result = await dialog.Result;
+
+        if (result.Canceled) return;
+
+        await Api.DeleteProductAsync(item.Id);
+        _items = await Api.GetProductsAsync();
+        Snackbar.Add("Deleted", Severity.Success);
+    }
+}
