@@ -1,0 +1,16 @@
+@page "/procurement/products/new"
+@page "/procurement/products/{Id:guid}"
+@inject ProcurementApiClient Api
+@inject NavigationManager Nav
+@inject ISnackbar Snackbar
+
+<MudText 
+    Typo="Typo.h4"
+    Class="mb-2">@(_isNew ? "New Product" : "Edit product")
+    </MudText>
+
+@code {
+    [Parameter] public Guid? Id { get; set; }
+    private bool _isNew => Id is null || Id == Guid.Empty;
+    
+}
